@@ -18,7 +18,10 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                bat 'docker run -d -p 3000:80 --name project-sparkle project-sparkle'
+                bat '''
+                timeout /t 5 /nobreak
+                docker run -d -p 3000:80 --name project-sparkle project-sparkle
+                '''
             }
         }
         stage('Push to Docker Hub') {
