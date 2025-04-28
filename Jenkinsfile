@@ -13,12 +13,12 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t food .'
+                bat 'docker build -t project-sparkle .'
             }
         }
         stage('Run Container') {
             steps {
-                bat 'docker run -d -p 3000:80 --name food food'
+                bat 'docker run -d -p 3000:80 --name project-sparkle project-sparkle'
             }
         }
         stage('Push to Docker Hub') {
@@ -26,8 +26,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'Dockerhub-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     bat '''
                         docker login -u %DOCKER_USER% -p %DOCKER_PASS%
-                        docker tag food %DOCKER_USER%/food
-                        docker push %DOCKER_USER%/food
+                        docker tag project-sparkle %DOCKER_USER%/project-sparkle
+                        docker push %DOCKER_USER%/project-sparkle
                     '''
                 }
             }
