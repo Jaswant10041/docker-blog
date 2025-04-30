@@ -18,7 +18,7 @@ const CardDetails = ({ data }) => {
         onClick={() => setShowDetails(!showDetails)}
         className="mt-4 text-blue-500 hover:underline text-sm"
       >
-        {showDetails ? 'Show Less' : 'jasssu More'}
+        {showDetails ? 'Show Less' : 'Readddd More'}
       </button>
     </div>
   );
